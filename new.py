@@ -229,7 +229,7 @@ if menu_id == 'Amount Spent Prediction':
     lottie1 = load_lottiefile("predict.json")
     #1 Create header and title
     with st.container():
-        st.title("Mental Health Disorder (MHD) Prediction")
+        st.title("Amount Spent Predictionn")
         
     col1, col2 = st.columns((1,1))
     with col1:
