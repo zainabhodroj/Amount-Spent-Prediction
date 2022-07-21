@@ -154,29 +154,26 @@ if menu_id == 'EDA':
     #KPIs
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        #info card of the Number of customers
+        #info card of the Number of Objectives
         Objective=  len(pd.unique(df['Objective']))
         theme_override = {'bgcolor': 'rgb(153, 255, 187)','title_color': 'white','content_color': 'white',
         'icon_color': 'white', 'icon': 'bi bi-search'}
         hc.info_card(title='Objectives', content=Objective, theme_override=theme_override)
     with col2:
-        #info card of the average transaction value
-        #info card of the Number of customers
+        #info card of the Number of Countries
         Country=  len(pd.unique(df['Country']))
         theme_override = {'bgcolor': 'rgb(153, 255, 187)','title_color': 'white','content_color': 'white',
         'icon_color': 'white', 'icon': 'bi bi-map'}
         hc.info_card(title='Country', content=Country, theme_override=theme_override)
     with col3:
-        #info card of the average transaction value
-        #info card of the Number of customers
+        #info card of the average reach value
         Average_reach =int(df["Reach"].mean())
         theme_override = {'bgcolor': 'rgb(153, 255, 187)','title_color': 'white','content_color': 'white',
         'icon_color': 'white', 'icon': 'bi bi-people'}
         hc.info_card(title='Average Reach', content=Average_reach, theme_override=theme_override)
 
     with col4:
-        #info card of the average transaction value
-        #info card of the Number of customers
+        #info card of the average impressions value
         Average_Impressions =int(df["Impressions"].mean())
         theme_override = {'bgcolor': 'rgb(153, 255, 187)','title_color': 'white','content_color': 'white',
         'icon_color': 'white', 'icon': 'bi bi-people-fill'}
@@ -187,8 +184,7 @@ if menu_id == 'EDA':
 
     #split to plot 2 side-by-side graphs
     col1, col2= st.columns(2)
-    #df = df[df['Objective'].isin(gender_selections)]
-    #df = df[df['Country'].isin(region_selections)]
+
     color_discrete_sequence= ['rgb(220,176,242)', ' rgb(254,136,177)',
              'rgb(136,204,238)']
     with col1:
@@ -200,7 +196,7 @@ if menu_id == 'EDA':
         st.plotly_chart(fig10)
         
         
-        #scatter plot of reach vs. Amount Spent
+        #pie chart of objectives by Amount Spent
         fig20 = go.Figure(px.pie(data, values='Amount Spent', names='Objective', title='Amount Spent by Objective',
              color_discrete_sequence= color_discrete_sequence
             ))
@@ -215,7 +211,8 @@ if menu_id == 'EDA':
         st.plotly_chart(fig11) 
                 
         
-        
+        #pie chart of Countries by Amount Spent
+
         fig5 = go.Figure(px.pie(data, values='Amount Spent', names='Country', title='Amount Spent by Country',
              color_discrete_sequence= color_discrete_sequence
             ))
@@ -227,7 +224,7 @@ if menu_id == 'EDA':
 if menu_id == 'Amount Spent Prediction':
     # load assets (lotties animation)
     lottie1 = load_lottiefile("predict.json")
-    #1 Create header and title
+    #1 Create title
     with st.container():
         st.title("Amount Spent Predictionn")
         
@@ -274,7 +271,7 @@ if menu_id == 'Amount Spent Prediction':
         with st.container():
             new_df = pd.DataFrame({'Objective': [Objective], 'Country': [country], 'Reach': [Reach], 'Impressions': [Impressions], 'Link_clicks': [Link_clicks], 'Landing_page_views': [Landing_page_views], 'Post_engagement': [Post_engagement], 'three_second_video_plays': [three_second_video_plays], 'ThruPlays': [ThruPlays], 'Post_comments': [Post_comments], 'Post_saves': [Post_saves], 'Post_reactions': [Post_reactions], 'Post_shares': [Post_shares], 'Video_plays': [Video_plays], 'Leads': [Leads]})
 
-        # 6 predict_proba(new_df) and create botton for diagnosis
+        # 6 predict and create botton for diagnosis
         with col1: 
             if st.button('Predict'):
                 predicted = loaded_model.predict(new_df)
