@@ -194,8 +194,6 @@ if menu_id == 'EDA':
              'rgb(136,204,238)']
     with col1:
         #Count by Objective 
-        import seaborn as sns
-        import matplotlib.pyplot as plt
         data= pd.read_csv('clean_data.csv')
         fig10 = px.bar(data, x=data['Country']
                      )
